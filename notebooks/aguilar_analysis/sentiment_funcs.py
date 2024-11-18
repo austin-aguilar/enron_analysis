@@ -1,3 +1,9 @@
+
+
+
+
+
+#### SENTIMENT ANALYSIS
 import torch
 # from transformers import DistilBertTokenizer, DistilBertForSequenceClassification
 import pandas as pd
@@ -52,6 +58,7 @@ def classify_text_batch(series: pd.Series, model=model, tokenizer=tokenizer, emb
     df_results = pd.DataFrame({'text': series.tolist(), 'embeddings': embeddings_list, 'label': results})
     return df_results
 
+
 def chunk_dataframe(df, chunk_size=1000):
   """
   Chunks a DataFrame into smaller DataFrames of the specified size.
@@ -70,3 +77,13 @@ def chunk_dataframe(df, chunk_size=1000):
     chunks.append(chunk)
 
   return chunks
+
+def label_df (df_chunks: list):
+  processed_chunks = []
+  for i, item in enumerate(df_chunks):
+    print(f"\nProcessing Chunk {i + 1}/{len(df_chunks)}\n")
+    df = classify_text_batch(item['text'])
+    processed_chunks.append(df)
+  result = pd.concat(processed_chunks, ignore_index=True)
+  return result
+
