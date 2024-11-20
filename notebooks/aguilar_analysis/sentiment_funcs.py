@@ -59,6 +59,12 @@ def classify_text_batch(df: pd.DataFrame, model=model, tokenizer=tokenizer, embe
     df['label'] = results
     return df
 
+def embed_text(input,embedding_model=embedding_model):
+    if type(input) == str:
+       return embedding_model.encode(input) 
+    else:
+      embedding_array = embedding_model.encode(input['text'].to_list())
+      return embedding_array
 
 def chunk_dataframe(df, chunk_size=1000):
   """

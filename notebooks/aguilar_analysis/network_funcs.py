@@ -11,13 +11,14 @@ def get_executives():
     return executives
 
 
-def create_network(df, title, labels=False,  executives = executives):
+def create_network(df, title="", labels=False, no_plot=True,  executives = executives):
     G = nx.DiGraph()
     grouped_df = df.groupby(['sender', 'recipient1']).size().reset_index(name='count')
     for index, row in grouped_df.iterrows():
         if row['sender'] in executives or row['recipient1'] in executives:
             G.add_edge(row['sender'], row['recipient1'], weight=row['count'])
-
+    if no_plot:
+        return G
     plt.figure(figsize=(12, 8))
     pos = nx.spring_layout(G, k=0.2, seed=42)
     nx.draw_networkx(G, pos, with_labels=labels,node_size=10, font_size=10, node_color='red')
