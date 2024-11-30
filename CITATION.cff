@@ -1,0 +1,16 @@
+cff-version: 1.0.0
+message: "Analysis for INTA-6450 Fall 2024 final project"
+authors:
+- family-names: "Aguilar"
+  given-names: "Austin"
+  email: "aaguilar71@gatech.edu"
+- family-names: "Lavender"
+  given-names: "Tyann"
+  email: "tlavender3@gatech.edu"
+- family-names: "McLeod"
+  given-names: "Jordan"
+  email: "jmcleod36@gatech.edu"
+title: "Enron Email Analysis"
+version: 1.0.0
+date-released: 2024-12-02
+url: "https://github.com/austin-aguilar/enron_analysis"
